@@ -11,7 +11,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import com.wine_api.wine_api.repository.RegionRepository;
 import com.wine_api.wine_api.repository.WineRepository;
+import com.wine_api.wine_api.repository.TypeRepository;
+import com.wine_api.wine_api.repository.WineryRepository;
 import com.wine_api.wine_api.wines.Region;
 import com.wine_api.wine_api.wines.Type;
 import com.wine_api.wine_api.wines.Wine;
@@ -22,6 +25,9 @@ class WineApiControllerTest {
     
     @MockBean
     private WineRepository wineRepository;
+    private RegionRepository regionRepository;
+    private TypeRepository TypeRepository;
+    private WineryRepository WineryRepository;
 
     @Autowired
     private MockMvc mockMvc;
@@ -42,5 +48,10 @@ class WineApiControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/wine"))
                 .andExpect(MockMvcResultMatchers.jsonPath("@.[0].id").value(1));
+    }
+
+    @Test
+    void test(){
+        
     }
 }
