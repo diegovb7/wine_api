@@ -12,12 +12,12 @@ public class Wine implements Serializable{
     private Integer id;
 
     private String name;
-    private Integer year;
+    private String year;
     private Float rating;
     private Integer num_reviews;
     private Float price;
-    private Integer body;
-    private Integer acidity;
+    private String body;
+    private String acidity;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "winery_id", nullable = false)
@@ -37,8 +37,8 @@ public class Wine implements Serializable{
 
     
 
-    public Wine(String name, Integer year, Float rating, Integer num_reviews, Float price, Integer body,
-            Integer acidity, Winery winery, Type type, Region region) {
+    public Wine(String name, String year, Float rating, Integer num_reviews, Float price, String body,
+            String acidity, Winery winery, Type type, Region region) {
         this.name = name;
         this.year = year;
         this.rating = rating;
@@ -65,13 +65,13 @@ public class Wine implements Serializable{
 
 
 
-    public Integer getYear() {
+    public String getYear() {
         return year;
     }
 
 
 
-    public void setYear(Integer year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
@@ -113,25 +113,25 @@ public class Wine implements Serializable{
 
 
 
-    public Integer getBody() {
+    public String getBody() {
         return body;
     }
 
 
 
-    public void setBody(Integer body) {
+    public void setBody(String body) {
         this.body = body;
     }
 
 
 
-    public Integer getAcidity() {
+    public String getAcidity() {
         return acidity;
     }
 
 
 
-    public void setAcidity(Integer acidity) {
+    public void setAcidity(String acidity) {
         this.acidity = acidity;
     }
 
