@@ -22,4 +22,16 @@ public class WineService {
 		return wineRepository.findById(id).orElse(null);
 	}
 	
+	public Wine createWine(Wine wine){
+        return wineRepository.save(wine);
+    }
+	
+	public void deleteWine(Integer id) {
+		wineRepository.deleteById(id);
+	}
+	
+	public Wine updateWine(Wine wine){
+        return wineRepository.save(wine);
+    }
+	
 }

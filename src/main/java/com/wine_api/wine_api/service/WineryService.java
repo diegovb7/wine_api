@@ -21,5 +21,17 @@ public class WineryService {
 	public Winery getWineById(Integer id) {
 		return wineryRepository.findById(id).orElse(null);
 	}
+	
+	public Winery createWinery(Winery winery){
+        return wineryRepository.save(winery);
+    }
+	
+	public void deleteWinery(Integer id) {
+		wineryRepository.deleteById(id);
+	}
+	
+	public Winery updateWinery(Winery winery){
+        return wineryRepository.save(winery);
+    }
 
 }

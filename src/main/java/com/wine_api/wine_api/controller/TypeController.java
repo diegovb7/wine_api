@@ -5,13 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wine_api.wine_api.service.TypeService;
-import com.wine_api.wine_api.service.WineService;
 import com.wine_api.wine_api.wines.Type;
 
 @RestController
@@ -32,6 +35,21 @@ public class TypeController {
 		
 		return new ResponseEntity<>(types, HttpStatus.OK);
 	}
+	
+	@PostMapping("/type")
+	public ResponseEntity<Type> createType(@RequestBody Type type) {
+		return new ResponseEntity<>(typeService.createType(type), HttpStatus.OK);
+	}
+	
+	@PutMapping("/type")
+	public ResponseEntity<Type> updateType(@RequestBody Type type) {
+		return new ResponseEntity<>(typeService.updateType(type), HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/type/{id}")
+	public void deleteType(@PathVariable Integer id) {
+		typeService.deleteType(id);
+	}	
 	
 	@GetMapping("/type/{id}")
 	public ResponseEntity<Type> getWine(@PathVariable Integer id){
