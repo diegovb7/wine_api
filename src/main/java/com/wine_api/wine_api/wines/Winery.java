@@ -14,7 +14,7 @@ public class Winery implements Serializable{
 
     private String name;
 
-    @OneToMany(mappedBy = "winery", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "winery", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Wine> wines;
 
     public Winery(){

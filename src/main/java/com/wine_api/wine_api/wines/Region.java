@@ -15,7 +15,7 @@ public class Region implements Serializable{
     private String name;
     private String country;
 
-    @OneToMany(mappedBy = "region", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "region", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Wine> wines;
 
     public Region(){

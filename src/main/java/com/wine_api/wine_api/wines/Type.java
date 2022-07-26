@@ -14,7 +14,7 @@ public class Type implements Serializable{
 
     private String name;
 
-    @OneToMany(mappedBy = "type", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "type", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Wine> wines;
 
     public Type(){
