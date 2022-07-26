@@ -18,7 +18,7 @@ public class WineryService {
 		return wineryRepository.findAll();
 	}
 	
-	public Winery getWineById(Integer id) {
+	public Winery getWineryById(Integer id) {
 		return wineryRepository.findById(id).orElse(null);
 	}
 	

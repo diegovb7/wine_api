@@ -54,7 +54,7 @@ public class WineryController {
 	@GetMapping("/winery/{id}")
 	public ResponseEntity<Winery> getWinery(@PathVariable Integer id){
 		
-		Winery winery = wineryService.getWineById(id);
+		Winery winery = wineryService.getWineryById(id);
 		
 		if(winery == null) {
 			return ResponseEntity.notFound().build();

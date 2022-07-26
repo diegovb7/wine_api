@@ -1,6 +1,6 @@
 package com.wine_api.wine_api.controller;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 import java.util.Arrays;
@@ -16,51 +16,53 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wine_api.wine_api.service.TypeService;
 import com.wine_api.wine_api.service.WineryService;
+import com.wine_api.wine_api.wines.Type;
 import com.wine_api.wine_api.wines.Winery;
 
-@WebMvcTest(WineryController.class)
-class WineryApiControllerTest {
+@WebMvcTest(TypeController.class)
+class TypeApiControllerTest {
 
 	@MockBean
-	private WineryService wineryService;
+	private TypeService typeService;
 
 	@Autowired
 	private MockMvc mockMvc;
 
 	@Test
-	void getAllWineriesTest() throws Exception {
-		Winery winery1 = new Winery("Winery1");
-		Winery winery2 = new Winery("Winery2");
+	void getAllTypesTest() throws Exception {
+		Type type1 = new Type("Blanco");
+		Type type2 = new Type("Rojo");
 
-		Mockito.when(wineryService.getAll()).thenReturn(Arrays.asList(winery1, winery2));
+		Mockito.when(typeService.getAll()).thenReturn(Arrays.asList(type1, type2));
 
-		mockMvc.perform(MockMvcRequestBuilders.get("/api/winery"))
-				.andExpect(MockMvcResultMatchers.jsonPath("@.[1].name").value("Winery2"));
-
-	}
-
-	@Test
-	void getWineryTest() throws Exception {
-		Winery winery1 = new Winery(1, "Winery1");
-
-		Mockito.when(wineryService.getWineryById(1)).thenReturn(winery1);
-
-		mockMvc.perform(MockMvcRequestBuilders.get("/api/winery/1"))
-				.andExpect(MockMvcResultMatchers.jsonPath("@.name").value("Winery1"));
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/type"))
+				.andExpect(MockMvcResultMatchers.jsonPath("@.[1].name").value("Rojo"));
 
 	}
 
 	@Test
-	void saveWineryTest() throws Exception {
-		Winery winery1 = new Winery(1,"Winery1");
+	void getTypeTest() throws Exception {
+		Type type1 = new Type(1, "Blanco");
 
-		Mockito.when(wineryService.createWinery(Mockito.any(Winery.class))).thenReturn(winery1);
+		Mockito.when(typeService.getTypeById(1)).thenReturn(type1);
+
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/type/1"))
+				.andExpect(MockMvcResultMatchers.jsonPath("@.name").value("Blanco"));
+
+	}
+
+	@Test
+	void saveTypeTest() throws Exception {
+		Type type1 = new Type(1, "Blanco");
+
+		Mockito.when(typeService.createType(Mockito.any(Type.class))).thenReturn(type1);
 		
 		ObjectMapper objectMapper = new ObjectMapper();
-		String json = objectMapper.writeValueAsString(winery1);
+		String json = objectMapper.writeValueAsString(type1);
 		
-		mockMvc.perform(MockMvcRequestBuilders.post("/api/winery/")
+		mockMvc.perform(MockMvcRequestBuilders.post("/api/type/")
 				.content(json)
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
@@ -69,15 +71,15 @@ class WineryApiControllerTest {
 	}
 
 	@Test
-	void updateWineryTest() throws Exception {
-		Winery winery1 = new Winery(513,"Winery1");
+	void updateTypeTest() throws Exception {
+		Type type1 = new Type(1, "Blanco");
 
-		Mockito.when(wineryService.updateWinery(Mockito.any(Winery.class))).thenReturn(winery1);
+		Mockito.when(typeService.updateType(Mockito.any(Type.class))).thenReturn(type1);
 		
 		ObjectMapper objectMapper = new ObjectMapper();
-		String json = objectMapper.writeValueAsString(winery1);
+		String json = objectMapper.writeValueAsString(type1);
 		
-		mockMvc.perform(MockMvcRequestBuilders.put("/api/winery/")
+		mockMvc.perform(MockMvcRequestBuilders.put("/api/type/")
 				.content(json)
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
