@@ -23,6 +23,14 @@ public class Wine implements Serializable{
     @JoinColumn(name = "winery_id", nullable = false)
     private Winery winery;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "type_id", nullable = false)
+    private Type type;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "region_id", nullable = false)
+    private Region region;
+
     public Wine(){
 
     }
