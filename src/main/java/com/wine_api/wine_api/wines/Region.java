@@ -22,10 +22,9 @@ public class Region implements Serializable{
 
     }
 
-    public Region(String name, String country, Set<Wine> wines) {
+    public Region(String name, String country) {
         this.name = name;
-        //this.country = country;
-        this.wines = wines;
+        this.country = country;
     }
 
     public String getName() {
@@ -43,14 +42,5 @@ public class Region implements Serializable{
     public void setCountry(String country) {
         this.country = country;
     }
-
-    public Set<Wine> getWines() {
-        return wines;
-    }
-
-    public void setWines(Set<Wine> wines) {
-        this.wines = wines;
-    }
-
     
 }

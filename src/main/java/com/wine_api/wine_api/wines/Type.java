@@ -21,9 +21,8 @@ public class Type implements Serializable{
 
     }
 
-    public Type(String name, Set<Wine> wines) {
+    public Type(String name) {
         this.name = name;
-        this.wines = wines;
     }
 
     public String getName() {
@@ -32,14 +31,6 @@ public class Type implements Serializable{
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Set<Wine> getWines() {
-        return wines;
-    }
-
-    public void setWines(Set<Wine> wines) {
-        this.wines = wines;
     }
 
 }
