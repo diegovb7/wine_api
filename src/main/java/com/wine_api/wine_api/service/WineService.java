@@ -18,7 +18,7 @@ public class WineService {
 		return wineRepository.findAll();
 	}
 	
-	public Wine getWineById(Long id) {
+	public Wine getWineById(Integer id) {
 		return wineRepository.findById(id).orElse(null);
 	}
 	

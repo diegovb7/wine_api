@@ -9,7 +9,7 @@ public class Wine implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String name;
     private Integer year;
@@ -35,8 +35,10 @@ public class Wine implements Serializable{
 
     }
 
+    
+
     public Wine(String name, Integer year, Float rating, Integer num_reviews, Float price, Integer body,
-            Integer acidity, Winery winery) {
+            Integer acidity, Winery winery, Type type, Region region) {
         this.name = name;
         this.year = year;
         this.rating = rating;
@@ -45,71 +47,133 @@ public class Wine implements Serializable{
         this.body = body;
         this.acidity = acidity;
         this.winery = winery;
+        this.type = type;
+        this.region = region;
     }
+
+
 
     public String getName() {
         return name;
     }
 
+
+
     public void setName(String name) {
         this.name = name;
     }
+
+
 
     public Integer getYear() {
         return year;
     }
 
+
+
     public void setYear(Integer year) {
         this.year = year;
     }
+
+
 
     public Float getRating() {
         return rating;
     }
 
+
+
     public void setRating(Float rating) {
         this.rating = rating;
     }
+
+
 
     public Integer getNum_reviews() {
         return num_reviews;
     }
 
+
+
     public void setNum_reviews(Integer num_reviews) {
         this.num_reviews = num_reviews;
     }
+
+
 
     public Float getPrice() {
         return price;
     }
 
+
+
     public void setPrice(Float price) {
         this.price = price;
     }
+
+
 
     public Integer getBody() {
         return body;
     }
 
+
+
     public void setBody(Integer body) {
         this.body = body;
     }
+
+
 
     public Integer getAcidity() {
         return acidity;
     }
 
+
+
     public void setAcidity(Integer acidity) {
         this.acidity = acidity;
     }
+
+
 
     public Winery getWinery() {
         return winery;
     }
 
+
+
     public void setWinery(Winery winery) {
         this.winery = winery;
     }
+
+
+
+    public Type getType() {
+        return type;
+    }
+
+
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+
+
+    public Region getRegion() {
+        return region;
+    }
+
+
+
+    public void setRegion(Region region) {
+        this.region = region;
+    }
+
+
+
+    
 
     
 

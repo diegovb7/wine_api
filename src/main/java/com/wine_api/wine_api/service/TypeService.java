@@ -25,7 +25,7 @@ public class TypeService {
         return typeRepository.findAll();
     }
 
-    public Type getTypeById(Long id){
+    public Type getTypeById(Integer id){
         return typeRepository.findById(id).get();
     }
 

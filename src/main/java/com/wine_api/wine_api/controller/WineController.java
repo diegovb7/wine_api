@@ -33,7 +33,7 @@ public class WineController {
 	}
 	
 	@GetMapping("/wine/{id}")
-	public ResponseEntity<Wine> getWine(@PathVariable Long id){
+	public ResponseEntity<Wine> getWine(@PathVariable Integer id){
 		
 		Wine wine = wineService.getWineById(id);
 		

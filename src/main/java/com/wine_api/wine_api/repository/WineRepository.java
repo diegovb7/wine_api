@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.wine_api.wine_api.wines.Wine;
 
 @Repository
-public interface WineRepository extends JpaRepository<Wine, Long>{
+public interface WineRepository extends JpaRepository<Wine, Integer>{
 
 }

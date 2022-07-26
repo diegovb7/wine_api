@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.wine_api.wine_api.wines.Region;
 
 @Repository
-public interface RegionRepository extends JpaRepository<Region, Long>{
+public interface RegionRepository extends JpaRepository<Region, Integer>{
 
 }

@@ -10,7 +10,7 @@ public class Region implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String name;
     private String country;
@@ -24,7 +24,7 @@ public class Region implements Serializable{
 
     public Region(String name, String country, Set<Wine> wines) {
         this.name = name;
-        this.country = country;
+        //this.country = country;
         this.wines = wines;
     }
 
