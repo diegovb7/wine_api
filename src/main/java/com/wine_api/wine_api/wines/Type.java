@@ -5,26 +5,24 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-@Table(name = "region")
-public class Region implements Serializable{
-    
+@Table(name = "type")
+public class Type implements Serializable{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
-    private String country;
 
-    @OneToMany(mappedBy = "region", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "type", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Wine> wines;
 
-    public Region(){
+    public Type(){
 
     }
 
-    public Region(String name, String country, Set<Wine> wines) {
+    public Type(String name, Set<Wine> wines) {
         this.name = name;
-        this.country = country;
         this.wines = wines;
     }
 
@@ -36,14 +34,6 @@ public class Region implements Serializable{
         this.name = name;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
     public Set<Wine> getWines() {
         return wines;
     }
@@ -52,5 +42,4 @@ public class Region implements Serializable{
         this.wines = wines;
     }
 
-    
 }
