@@ -72,39 +72,21 @@ public class WineController {
 	@GetMapping("/recommend/best")
 	public ResponseEntity<List<Wine>> getBestRatedWines(@RequestParam(required = false) Integer top){
 		
-		if(top == null) {
-			return new ResponseEntity<>(wineService.findWinesByBestRating(), HttpStatus.OK);
-		}
-		else {
-			return new ResponseEntity<>(wineService.findSomeWinesByBestRating(top), HttpStatus.OK);
-		}
-//		List<Wine> wines = wineService.findWinesByBestRating();
-//
-//		Stream<Wine> w = wines.stream().limit(10);
-//
-//		return new ResponseEntity<>(w.collect(Collectors.toList()), HttpStatus.OK);
+		return new ResponseEntity<>(wineService.findWinesByBestRating(top), HttpStatus.OK);
+	
 	}
 	
 	@GetMapping("/expensive")
 	public ResponseEntity<List<Wine>> getHighestPricedWines(@RequestParam(required = false) Integer top){
 		
-		if(top == null) {
-			return new ResponseEntity<>(wineService.findWinesByHighestPrice(), HttpStatus.OK);
-		}
-		else {
-			return new ResponseEntity<>(wineService.findSomeWinesByHighestPrice(top), HttpStatus.OK);
-		}
+		return new ResponseEntity<>(wineService.findWinesByHighestPrice(top), HttpStatus.OK);
+		
 	}
 	
 	@GetMapping("/bang")
 	public ResponseEntity<List<Wine>> getWinesByRatingPrice(@RequestParam(required = false) Integer top){
 		
-		if(top == null) {
-			return new ResponseEntity<>(wineService.findWinesByRatingPrice(), HttpStatus.OK);
-		}
-		else {
-			return new ResponseEntity<>(wineService.findSomeWinesByRatingPrice(top), HttpStatus.OK);
-		}
+		return new ResponseEntity<>(wineService.findWinesByRatingPrice(top), HttpStatus.OK);
 	}
 
 	@GetMapping("/vintage")
@@ -112,19 +94,8 @@ public class WineController {
 
 		Map<String, List<Wine>> map = new HashMap<>();
 
-		List<String> years = wineService.findSomeBestYears(top);
+		wineService.findBestYears(top).stream().forEach( s -> map.put(s, wineService.findByYear(s)));
 
-		for(String year : years){
-			map.put(year, wineService.findByYear(year));
-		}
 		return new ResponseEntity<>(map, HttpStatus.OK);
-		/* 
-		if(top == null) {
-			return new ResponseEntity<>(wineService.findWinesByRatingPrice(), HttpStatus.OK);
-		}
-		else {
-			return new ResponseEntity<>(wineService.findSomeWinesByRatingPrice(top), HttpStatus.OK);
-		}
-		*/
 	}
 }

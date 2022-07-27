@@ -13,60 +13,51 @@ public class WineService {
 
 	@Autowired
 	private WineRepository wineRepository;
-	
-	public List<Wine> getAll(){
+
+	public List<Wine> getAll() {
 		return wineRepository.findAll();
 	}
-	
+
 	public Wine getWineById(Integer id) {
 		return wineRepository.findById(id).orElse(null);
 	}
-	
-	public Wine createWine(Wine wine){
-        return wineRepository.save(wine);
-    }
-	
+
+	public Wine createWine(Wine wine) {
+		return wineRepository.save(wine);
+	}
+
 	public void deleteWine(Integer id) {
 		wineRepository.deleteById(id);
 	}
-	
-	public Wine updateWine(Wine wine){
-        return wineRepository.save(wine);
-    }
-	
-	public List<Wine> findWinesByBestRating(){
-		return wineRepository.findWinesByBestRating();
-	}
-	
-	public List<Wine> findSomeWinesByBestRating(int numItems){
-		return wineRepository.findWinesByBestRating().subList(0, numItems);
+
+	public Wine updateWine(Wine wine) {
+		return wineRepository.save(wine);
 	}
 
-	public List<Wine> findWinesByHighestPrice(){
-		return wineRepository.findWinesByHighestPrice();
-	}
-	
-	public List<Wine> findSomeWinesByHighestPrice(int numItems){
-		return wineRepository.findWinesByHighestPrice().subList(0, numItems);
-	}
-	
-	public List<Wine> findWinesByRatingPrice(){
-		return wineRepository.findWinesByRatingPrice();
-	}
-	
-	public List<Wine> findSomeWinesByRatingPrice(int numItems){
-		return wineRepository.findWinesByRatingPrice().subList(0, numItems);
+	public List<Wine> findWinesByBestRating(Integer numItems) {
+
+		return numItems == null ? wineRepository.findWinesByBestRating()
+				: wineRepository.findWinesByBestRating().subList(0, numItems);
 	}
 
-	public List<String> findSomeBestYears(int numItems){
-		return wineRepository.findBestYears().subList(0, numItems);
+	public List<Wine> findWinesByHighestPrice(Integer numItems) {
+
+		return numItems == null ? wineRepository.findWinesByHighestPrice()
+				: wineRepository.findWinesByHighestPrice().subList(0, numItems);
 	}
 
-	public List<String> findBestYears(){
-		return wineRepository.findBestYears();
+	public List<Wine> findWinesByRatingPrice(Integer numItems) {
+
+		return numItems == null ? wineRepository.findWinesByRatingPrice()
+				: wineRepository.findWinesByRatingPrice().subList(0, numItems);
 	}
 
-	public List<Wine> findByYear(String year){
+	public List<String> findBestYears(Integer numItems) {
+
+		return numItems == null ? wineRepository.findBestYears() : wineRepository.findBestYears().subList(0, numItems);
+	}
+
+	public List<Wine> findByYear(String year) {
 		return wineRepository.findByYear(year);
 	}
 }
