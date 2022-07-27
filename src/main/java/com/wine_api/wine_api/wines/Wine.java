@@ -1,6 +1,7 @@
 package com.wine_api.wine_api.wines;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Range;

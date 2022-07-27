@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wine_api.wine_api.service.WineService;
@@ -66,4 +67,41 @@ public class WineController {
 		return new ResponseEntity<>(wine, HttpStatus.OK);
 	}
 
+	@GetMapping("/recommend/best")
+	public ResponseEntity<List<Wine>> getBestRatedWines(@RequestParam(required = false) Integer top){
+		
+		if(top == null) {
+			return new ResponseEntity<>(wineService.findWinesByBestRating(), HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<>(wineService.findSomeWinesByBestRating(top), HttpStatus.OK);
+		}
+//		List<Wine> wines = wineService.findWinesByBestRating();
+//
+//		Stream<Wine> w = wines.stream().limit(10);
+//
+//		return new ResponseEntity<>(w.collect(Collectors.toList()), HttpStatus.OK);
+	}
+	
+	@GetMapping("/expensive")
+	public ResponseEntity<List<Wine>> getHighestPricedWines(@RequestParam(required = false) Integer top){
+		
+		if(top == null) {
+			return new ResponseEntity<>(wineService.findWinesByHighestPrice(), HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<>(wineService.findSomeWinesByHighestPrice(top), HttpStatus.OK);
+		}
+	}
+	
+	@GetMapping("/bang")
+	public ResponseEntity<List<Wine>> getWinesByRatingPrice(@RequestParam(required = false) Integer top){
+		
+		if(top == null) {
+			return new ResponseEntity<>(wineService.findWinesByRatingPrice(), HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<>(wineService.findSomeWinesByRatingPrice(top), HttpStatus.OK);
+		}
+	}
 }

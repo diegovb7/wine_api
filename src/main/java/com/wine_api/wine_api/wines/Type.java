@@ -1,6 +1,8 @@
 package com.wine_api.wine_api.wines;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+
 import java.io.Serializable;
 import java.util.Set;
 
@@ -13,6 +15,7 @@ public class Type implements Serializable {
 	private Integer id;
 
 	@Column(nullable = false)
+	@NotEmpty
 	private String name;
 
 	@OneToMany(mappedBy = "type", fetch = FetchType.EAGER, cascade = CascadeType.ALL)

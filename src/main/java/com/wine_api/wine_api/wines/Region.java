@@ -18,7 +18,7 @@ public class Region implements Serializable {
 	@NotEmpty
 	private String name;
 
-	@Column(nullable = false)
+	@Column(nullable = false)	
 	@NotEmpty
 	private String country;
 

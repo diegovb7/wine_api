@@ -2,6 +2,7 @@ package com.wine_api.wine_api.wines;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -14,7 +15,7 @@ public class Winery implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
+    @NotEmpty
     private String name;
 
     @OneToMany(mappedBy = "winery", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
