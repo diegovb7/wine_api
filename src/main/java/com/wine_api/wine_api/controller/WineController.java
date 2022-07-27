@@ -67,8 +67,8 @@ public class WineController {
 	}
 
 	@GetMapping("recommend/best")
-	public ResponseEntity<List<Wine>> getBestRatedWines(){
-		List<Wine> wines = wineService.getAll();
+	public ResponseEntity<List<Wine>> getBestRatedWines(@){
+		List<Wine> wines = wineService.findWinesByBestRating();
 
 		Stream<Wine> w = wines.stream().limit(10);
 

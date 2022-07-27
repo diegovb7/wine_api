@@ -34,4 +34,11 @@ public class WineService {
         return wineRepository.save(wine);
     }
 	
+	public List<Wine> findWinesByBestRating(){
+		return wineRepository.findWinesByBestRating();
+	}
+
+	public List<Wine> findWinesByHighestPrice(){
+		return wineRepository.findWinesByHighestPrice();
+	}
 }

@@ -16,7 +16,7 @@ public class Executor implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		System.out.println("Data");
 		
-		System.out.println(wineRepository.findWinesByBestRating());
+		//System.out.println(wineRepository.findWinesByBestRating());
 		
 	}
 
