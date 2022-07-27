@@ -18,13 +18,13 @@ import com.wine_api.wine_api.service.TypeService;
 import com.wine_api.wine_api.wines.Type;
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api/type")
 public class TypeController {
 
 	@Autowired
 	private TypeService typeService;
 
-	@GetMapping("/type")
+	@GetMapping()
 	public ResponseEntity<List<Type>> getTypes(){
 		
 		List<Type> types = typeService.getAll();
@@ -36,22 +36,22 @@ public class TypeController {
 		return new ResponseEntity<>(types, HttpStatus.OK);
 	}
 	
-	@PostMapping("/type")
+	@PostMapping()
 	public ResponseEntity<Type> createType(@RequestBody Type type) {
 		return new ResponseEntity<>(typeService.createType(type), HttpStatus.OK);
 	}
 	
-	@PutMapping("/type")
+	@PutMapping()
 	public ResponseEntity<Type> updateType(@RequestBody Type type) {
 		return new ResponseEntity<>(typeService.updateType(type), HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/type/{id}")
+	@DeleteMapping("/{id}")
 	public void deleteType(@PathVariable Integer id) {
 		typeService.deleteType(id);
 	}	
 	
-	@GetMapping("/type/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Type> getWine(@PathVariable Integer id){
 		
 		Type type = typeService.getTypeById(id);

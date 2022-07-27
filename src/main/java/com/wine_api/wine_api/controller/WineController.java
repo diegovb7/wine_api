@@ -18,13 +18,13 @@ import com.wine_api.wine_api.service.WineService;
 import com.wine_api.wine_api.wines.Wine;
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api/wine")
 public class WineController {
 	
 	@Autowired
 	private WineService wineService;
 
-	@GetMapping("/wine")
+	@GetMapping()
 	public ResponseEntity<List<Wine>> getWines(){
 		
 		List<Wine> wines = wineService.getAll();
@@ -36,22 +36,22 @@ public class WineController {
 		return new ResponseEntity<>(wines, HttpStatus.OK);
 	}
 	
-	@PostMapping("/wine")
+	@PostMapping()
 	public ResponseEntity<Wine> createWine(@RequestBody Wine wine) {
 		return new ResponseEntity<>(wineService.createWine(wine), HttpStatus.OK);
 	}
 	
-	@PutMapping("/wine")
+	@PutMapping()
 	public ResponseEntity<Wine> updateWine(@RequestBody Wine wine) {
 		return new ResponseEntity<>(wineService.updateWine(wine), HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/wine/{id}")
+	@DeleteMapping("/{id}")
 	public void deleteWine(@PathVariable Integer id) {
 		wineService.deleteWine(id);
 	}	
 	
-	@GetMapping("/wine/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Wine> getWine(@PathVariable Integer id){
 		
 		Wine wine = wineService.getWineById(id);

@@ -20,8 +20,18 @@ public class Winery implements Serializable{
     public Winery(){
 
     }
+    
+    
 
-    public Winery(String name) {
+    public Winery(Integer id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+
+
+	public Winery(String name) {
         this.name = name;
     }
 

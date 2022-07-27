@@ -6,41 +6,47 @@ import java.util.Set;
 
 @Entity
 @Table(name = "region")
-public class Region implements Serializable{
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public class Region implements Serializable {
 
-    private String name;
-    private String country;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-    @OneToMany(mappedBy = "region", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<Wine> wines;
+	private String name;
+	private String country;
 
-    public Region(){
+	@OneToMany(mappedBy = "region", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<Wine> wines;
 
-    }
+	public Region() {
 
-    public Region(String name, String country) {
-        this.name = name;
-        this.country = country;
-    }
+	}
 
-    public String getName() {
-        return name;
-    }
+	public Region(Integer id, String name, String country) {
+		this.id = id;
+		this.name = name;
+		this.country = country;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public Region(String name, String country) {
+		this.name = name;
+		this.country = country;
+	}
 
-    public String getCountry() {
-        return country;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-    
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
 }

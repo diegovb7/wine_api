@@ -6,31 +6,36 @@ import java.util.Set;
 
 @Entity
 @Table(name = "type")
-public class Type implements Serializable{
+public class Type implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-    private String name;
+	private String name;
 
-    @OneToMany(mappedBy = "type", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<Wine> wines;
+	@OneToMany(mappedBy = "type", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<Wine> wines;
 
-    public Type(){
+	public Type() {
 
-    }
+	}
 
-    public Type(String name) {
-        this.name = name;
-    }
+	public Type(Integer id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public Type(String name) {
+		this.name = name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 }
