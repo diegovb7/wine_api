@@ -1,6 +1,5 @@
 package com.wine_api.wine_api.controller;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 import java.util.Arrays;
@@ -17,9 +16,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wine_api.wine_api.service.TypeService;
-import com.wine_api.wine_api.service.WineryService;
 import com.wine_api.wine_api.wines.Type;
-import com.wine_api.wine_api.wines.Winery;
 
 @WebMvcTest(TypeController.class)
 class TypeApiControllerTest {

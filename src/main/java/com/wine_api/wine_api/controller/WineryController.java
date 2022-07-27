@@ -18,13 +18,13 @@ import com.wine_api.wine_api.service.WineryService;
 import com.wine_api.wine_api.wines.Winery;
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api/winery")
 public class WineryController {
 	
 	@Autowired
 	private WineryService wineryService;
 
-	@GetMapping("/winery")
+	@GetMapping()
 	public ResponseEntity<List<Winery>> getWinerys(){
 		
 		List<Winery> winerys = wineryService.getAll();
@@ -36,22 +36,22 @@ public class WineryController {
 		return new ResponseEntity<>(winerys, HttpStatus.OK);
 	}
 	
-	@PostMapping("/winery")
+	@PostMapping()
 	public ResponseEntity<Winery> createWinery(@RequestBody Winery winery) {
 		return new ResponseEntity<>(wineryService.createWinery(winery), HttpStatus.OK);
 	}
 	
-	@PutMapping("/winery")
+	@PutMapping()
 	public ResponseEntity<Winery> updateWinery(@RequestBody Winery winery) {
 		return new ResponseEntity<>(wineryService.updateWinery(winery), HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/winery/{id}")
+	@DeleteMapping("/{id}")
 	public void deleteWinery(@PathVariable Integer id) {
 		wineryService.deleteWinery(id);
 	}	
 	
-	@GetMapping("/winery/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Winery> getWinery(@PathVariable Integer id){
 		
 		Winery winery = wineryService.getWineryById(id);

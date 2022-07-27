@@ -18,13 +18,13 @@ import com.wine_api.wine_api.service.RegionService;
 import com.wine_api.wine_api.wines.Region;
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api/region")
 public class RegionController {
 
 	@Autowired
 	private RegionService regionService;
 
-	@GetMapping("/region")
+	@GetMapping()
 	public ResponseEntity<List<Region>> getRegions(){
 		
 		List<Region> regions = regionService.getAll();
@@ -36,22 +36,22 @@ public class RegionController {
 		return new ResponseEntity<>(regions, HttpStatus.OK);
 	}
 	
-	@PostMapping("/region")
+	@PostMapping()
 	public ResponseEntity<Region> createRegion(@RequestBody Region region) {
 		return new ResponseEntity<>(regionService.createRegion(region), HttpStatus.OK);
 	}
 	
-	@PutMapping("/region")
+	@PutMapping()
 	public ResponseEntity<Region> updateRegion(@RequestBody Region region) {
 		return new ResponseEntity<>(regionService.updateRegion(region), HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/region/{id}")
+	@DeleteMapping("/{id}")
 	public void deleteRegion(@PathVariable Integer id) {
 		regionService.deleteRegion(id);
 	}	
 	
-	@GetMapping("/region/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Region> getRegion(@PathVariable Integer id){
 		
 		Region region = regionService.getRegionById(id);
