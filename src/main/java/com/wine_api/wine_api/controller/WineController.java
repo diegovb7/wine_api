@@ -1,6 +1,9 @@
 package com.wine_api.wine_api.controller;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,13 +21,13 @@ import com.wine_api.wine_api.service.WineService;
 import com.wine_api.wine_api.wines.Wine;
 
 @RestController
-@RequestMapping("/api/wine")
+@RequestMapping("/api")
 public class WineController {
 	
 	@Autowired
 	private WineService wineService;
 
-	@GetMapping()
+	@GetMapping("/wine")
 	public ResponseEntity<List<Wine>> getWines(){
 		
 		List<Wine> wines = wineService.getAll();
@@ -36,22 +39,22 @@ public class WineController {
 		return new ResponseEntity<>(wines, HttpStatus.OK);
 	}
 	
-	@PostMapping()
+	@PostMapping("/wine")
 	public ResponseEntity<Wine> createWine(@RequestBody Wine wine) {
 		return new ResponseEntity<>(wineService.createWine(wine), HttpStatus.OK);
 	}
 	
-	@PutMapping()
+	@PutMapping("/wine")
 	public ResponseEntity<Wine> updateWine(@RequestBody Wine wine) {
 		return new ResponseEntity<>(wineService.updateWine(wine), HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/wine/{id}")
 	public void deleteWine(@PathVariable Integer id) {
 		wineService.deleteWine(id);
 	}	
 	
-	@GetMapping("/{id}")
+	@GetMapping("/wine/{id}")
 	public ResponseEntity<Wine> getWine(@PathVariable Integer id){
 		
 		Wine wine = wineService.getWineById(id);
@@ -61,5 +64,14 @@ public class WineController {
 		}
 		
 		return new ResponseEntity<>(wine, HttpStatus.OK);
+	}
+
+	@GetMapping("recommend/best")
+	public ResponseEntity<List<Wine>> getBestRatedWines(){
+		List<Wine> wines = wineService.getAll();
+
+		Stream<Wine> w = wines.stream().limit(10);
+
+		return new ResponseEntity<>(w.collect(Collectors.toList()), HttpStatus.OK);
 	}
 }
