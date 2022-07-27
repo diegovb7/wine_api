@@ -14,11 +14,11 @@ public class Region implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(nullable = false)
+	
 	@NotEmpty
 	private String name;
 
-	@Column(nullable = false)	
+	
 	@NotEmpty
 	private String country;
 
@@ -30,6 +30,7 @@ public class Region implements Serializable {
 	}
 
 	public Region(Integer id, String name, String country) {
+		super();
 		this.id = id;
 		this.name = name;
 		this.country = country;
@@ -59,6 +60,14 @@ public class Region implements Serializable {
 	@Override
 	public String toString() {
 		return "Region [id=" + id + ", name=" + name + ", country=" + country + "]";
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	
 	

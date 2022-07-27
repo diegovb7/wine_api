@@ -14,7 +14,6 @@ public class Type implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(nullable = false)
 	@NotEmpty
 	private String name;
 
@@ -26,6 +25,7 @@ public class Type implements Serializable {
 	}
 
 	public Type(Integer id, String name) {
+		super();
 		this.id = id;
 		this.name = name;
 	}
@@ -45,6 +45,14 @@ public class Type implements Serializable {
 	@Override
 	public String toString() {
 		return "Type [id=" + id + ", name=" + name + "]";
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	
 	

@@ -1,8 +1,8 @@
 package com.wine_api.wine_api.wines;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 import org.hibernate.validator.constraints.Range;
 
@@ -16,28 +16,31 @@ public class Wine implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
+    @NotNull
     private String name;
 
-    @Column(nullable = false)
+    @NotNull
+    @Range(min = 0, max = 2022)
     private String year;
 
-    @Column(nullable = false)
+    @NotNull
     @Range(min = 0, max = 5)
     private Float rating;
 
-    @Column(nullable = false)
-    @Range(min = 0, max = Integer.MAX_VALUE)
+    @NotNull
+    @Positive
     private Integer num_reviews;
 
-    @Column(nullable = false)
-    @Range(min = 0, max = Integer.MAX_VALUE)
+    @NotNull
+    @Positive
     private Float price;
 
-    @Column(nullable = false)
+    @NotNull
+    @Range(min = 1, max = 5)
     private String body;
 
-    @Column(nullable = false)
+    @NotNull
+    @Range(min = 1, max = 5)
     private String acidity;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
@@ -47,7 +50,7 @@ public class Wine implements Serializable{
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "type_id", nullable = false)
-    //@NotNull
+    @NotNull
     private Type type;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)

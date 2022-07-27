@@ -1,7 +1,6 @@
 package com.wine_api.wine_api.wines;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.NotEmpty;
 
 import java.io.Serializable;
