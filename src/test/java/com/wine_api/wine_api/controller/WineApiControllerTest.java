@@ -23,31 +23,6 @@ import com.wine_api.wine_api.wines.Winery;
 @WebMvcTest
 class WineApiControllerTest {
     
-<<<<<<< HEAD
-//    @MockBean
-//    private WineRepository wineRepository;
-//
-//    @Autowired
-//    private MockMvc mockMvc;
-//
-//    @Test
-//    void getAllWines() throws Exception{
-//
-//        //Wine(String name, String year, Float rating, Integer num_reviews, Float price, String body,
-//        //String acidity, Winery winery, Type type, Region region)
-//
-//        Wine wine1 = new Wine("Wine1", "2000", new Float(4.5),
-//            new Integer(4), new Float(6.7), "NA", "NA", new Winery("Winery1"), new Type("Duro"), new Region("España", "Europa"));
-//
-//        Wine wine2 = new Wine("Wine2", "2002", new Float(4.5),
-//            new Integer(4), new Float(6.7), "NA", "NA", new Winery("Winery2"), new Type("Duro2"), new Region("España", "Europa"));
-//        
-//        Mockito.when(wineRepository.findAll()).thenReturn(Arrays.asList(wine1, wine2));
-//
-//        mockMvc.perform(MockMvcRequestBuilders.get("/api/wine"))
-//                .andExpect(MockMvcResultMatchers.jsonPath("@.[0].id").value(1));
-//    }
-=======
     @MockBean
     private WineRepository wineRepository;
     private RegionRepository regionRepository;
@@ -79,5 +54,4 @@ class WineApiControllerTest {
     void test(){
         
     }
->>>>>>> 8c3c35fde67fbd9a991e96b802a2d75fc1c8c104
 }
