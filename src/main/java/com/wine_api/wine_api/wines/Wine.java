@@ -1,6 +1,8 @@
 package com.wine_api.wine_api.wines;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Range;
 
@@ -40,14 +42,17 @@ public class Wine implements Serializable{
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "winery_id", nullable = false)
+    @NotNull
     private Winery winery;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "type_id", nullable = false)
+    @NotNull
     private Type type;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "region_id", nullable = false)
+    @NotNull
     private Region region;
 
     public Wine(){

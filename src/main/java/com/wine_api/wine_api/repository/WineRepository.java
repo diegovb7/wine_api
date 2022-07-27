@@ -11,16 +11,13 @@ import com.wine_api.wine_api.wines.Wine;
 @Repository
 public interface WineRepository extends JpaRepository<Wine, Integer>{
 
-//	@Query(value = "select * from wine order by rating DESC limit 10", nativeQuery = true)
-//	List<Wine> findWinesByBestRating();
-//	
-//	@Query(value = "select * from wine order by price DESC limit 10", nativeQuery = true)
-//	List<Wine> findWinesByHighestPrice();
-	
 	@Query(value = "select * from wine order by rating DESC", nativeQuery = true)
 	List<Wine> findWinesByBestRating();
 	
 	@Query(value = "select * from wine order by price DESC", nativeQuery = true)
 	List<Wine> findWinesByHighestPrice();
+	
+	@Query(value = "select * from wine order by rating/price desc", nativeQuery = true)
+	List<Wine> findWinesByRatingPrice();
 	
 }

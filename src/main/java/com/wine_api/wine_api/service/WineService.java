@@ -37,8 +37,24 @@ public class WineService {
 	public List<Wine> findWinesByBestRating(){
 		return wineRepository.findWinesByBestRating();
 	}
+	
+	public List<Wine> findSomeWinesByBestRating(int numItems){
+		return wineRepository.findWinesByBestRating().subList(0, numItems);
+	}
 
 	public List<Wine> findWinesByHighestPrice(){
 		return wineRepository.findWinesByHighestPrice();
+	}
+	
+	public List<Wine> findSomeWinesByHighestPrice(int numItems){
+		return wineRepository.findWinesByHighestPrice().subList(0, numItems);
+	}
+	
+	public List<Wine> findWinesByRatingPrice(){
+		return wineRepository.findWinesByRatingPrice();
+	}
+	
+	public List<Wine> findSomeWinesByRatingPrice(int numItems){
+		return wineRepository.findWinesByRatingPrice().subList(0, numItems);
 	}
 }

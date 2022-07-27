@@ -15,9 +15,10 @@ public class Region implements Serializable {
 	private Integer id;
 
 	@Column(nullable = false)
+	@NotEmpty
 	private String name;
 
-	@Column(nullable = false)
+	@Column(nullable = false)	
 	@NotEmpty
 	private String country;
 
