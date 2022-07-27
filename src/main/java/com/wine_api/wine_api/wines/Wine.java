@@ -1,6 +1,9 @@
 package com.wine_api.wine_api.wines;
 
 import javax.persistence.*;
+
+import org.hibernate.validator.constraints.Range;
+
 import java.io.Serializable;
 
 @Entity
@@ -18,12 +21,15 @@ public class Wine implements Serializable{
     private String year;
 
     @Column(nullable = false)
+    @Range(min = 0, max = 5)
     private Float rating;
 
     @Column(nullable = false)
+    @Range(min = 0, max = Integer.MAX_VALUE)
     private Integer num_reviews;
 
     @Column(nullable = false)
+    @Range(min = 0, max = Integer.MAX_VALUE)
     private Float price;
 
     @Column(nullable = false)
