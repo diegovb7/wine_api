@@ -19,5 +19,9 @@ public interface WineRepository extends JpaRepository<Wine, Integer>{
 	
 	@Query(value = "select * from wine order by rating/price desc", nativeQuery = true)
 	List<Wine> findWinesByRatingPrice();
+
+    @Query(value = "select year from wine group by year order by avg(rating) desc", nativeQuery = true)
+	List<String> findBestYears();
 	
+    List<Wine> findByYear(String year);
 }

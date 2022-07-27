@@ -57,4 +57,16 @@ public class WineService {
 	public List<Wine> findSomeWinesByRatingPrice(int numItems){
 		return wineRepository.findWinesByRatingPrice().subList(0, numItems);
 	}
+
+	public List<String> findSomeBestYears(int numItems){
+		return wineRepository.findBestYears().subList(0, numItems);
+	}
+
+	public List<String> findBestYears(){
+		return wineRepository.findBestYears();
+	}
+
+	public List<Wine> findByYear(String year){
+		return wineRepository.findByYear(year);
+	}
 }

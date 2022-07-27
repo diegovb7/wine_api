@@ -1,7 +1,9 @@
 package com.wine_api.wine_api.controller;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -103,5 +105,26 @@ public class WineController {
 		else {
 			return new ResponseEntity<>(wineService.findSomeWinesByRatingPrice(top), HttpStatus.OK);
 		}
+	}
+
+	@GetMapping("/vintage")
+	public ResponseEntity<Map<String, List<Wine>>> getWinesByBestYears(@RequestParam(required = false) Integer top){
+
+		Map<String, List<Wine>> map = new HashMap<>();
+
+		List<String> years = wineService.findSomeBestYears(top);
+
+		for(String year : years){
+			map.put(year, wineService.findByYear(year));
+		}
+		return new ResponseEntity<>(map, HttpStatus.OK);
+		/* 
+		if(top == null) {
+			return new ResponseEntity<>(wineService.findWinesByRatingPrice(), HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<>(wineService.findSomeWinesByRatingPrice(top), HttpStatus.OK);
+		}
+		*/
 	}
 }
