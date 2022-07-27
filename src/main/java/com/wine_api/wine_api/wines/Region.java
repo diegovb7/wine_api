@@ -1,6 +1,8 @@
 package com.wine_api.wine_api.wines;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+
 import java.io.Serializable;
 import java.util.Set;
 
@@ -12,7 +14,11 @@ public class Region implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@Column(nullable = false)
 	private String name;
+
+	@Column(nullable = false)
+	@NotEmpty
 	private String country;
 
 	@OneToMany(mappedBy = "region", fetch = FetchType.EAGER, cascade = CascadeType.ALL)

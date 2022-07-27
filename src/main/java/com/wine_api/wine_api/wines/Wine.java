@@ -11,12 +11,25 @@ public class Wine implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private String year;
+
+    @Column(nullable = false)
     private Float rating;
+
+    @Column(nullable = false)
     private Integer num_reviews;
+
+    @Column(nullable = false)
     private Float price;
+
+    @Column(nullable = false)
     private String body;
+
+    @Column(nullable = false)
     private String acidity;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
