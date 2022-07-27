@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -31,6 +32,7 @@ class WineApiControllerTest {
     private MockMvc mockMvc;
 
     @Test
+    @WithMockUser(username = "admin", password = "1234", roles = { "USER" })
     void getAllWinesTest() throws Exception{
 
         //Wine(String name, String year, Float rating, Integer num_reviews, Float price, String body,
@@ -49,6 +51,7 @@ class WineApiControllerTest {
     }
     
     @Test
+    @WithMockUser(username = "admin", password = "1234", roles = { "USER" })
 	void getWineTest() throws Exception {
     	Wine wine1 = new Wine("Wine1", "2000", new Float(4.5),
                 new Integer(4), new Float(6.7), "NA", "NA", new Winery("Winery1"), new Type("Duro"), new Region("España", "Europa"));
@@ -60,6 +63,7 @@ class WineApiControllerTest {
 	}
     
     @Test
+    @WithMockUser(username = "admin", password = "1234", roles = { "USER" })
 	void saveWineTest() throws Exception {
     	Wine wine1 = new Wine("Wine1", "2000", new Float(4.5),
                 new Integer(4), new Float(6.7), "NA", "NA", new Winery("Winery1"), new Type("Duro"), new Region("España", "Europa"));
@@ -78,6 +82,7 @@ class WineApiControllerTest {
 	}
     
     @Test
+    @WithMockUser(username = "admin", password = "1234", roles = { "USER" })
 	void updateWineTest() throws Exception {
     	Wine wine1 = new Wine("Wine1", "2000", new Float(4.5),
                 new Integer(4), new Float(6.7), "NA", "NA", new Winery("Winery1"), new Type("Duro"), new Region("España", "Europa"));

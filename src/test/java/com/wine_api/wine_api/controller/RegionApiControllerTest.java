@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -28,6 +29,7 @@ class RegionApiControllerTest {
 	private MockMvc mockMvc;
 
 	@Test
+	@WithMockUser(username = "admin", password = "1234", roles = { "USER" })
 	void getAllRegionsTest() throws Exception {
 		Region region1 = new Region("España", "Europa");
 		Region region2 = new Region("Francia", "Europa");
@@ -40,6 +42,7 @@ class RegionApiControllerTest {
 	}
 	
 	@Test
+	@WithMockUser(username = "admin", password = "1234", roles = { "USER" })
 	void getRegionTest() throws Exception {
 		Region region1 = new Region("España", "Europa");
 
@@ -51,6 +54,7 @@ class RegionApiControllerTest {
 	}
 
 	@Test
+	@WithMockUser(username = "admin", password = "1234", roles = { "USER" })
 	void saveRegionTest() throws Exception {
 		Region region1 = new Region("España", "Europa");
 
@@ -68,6 +72,7 @@ class RegionApiControllerTest {
 	}
 
 	@Test
+	@WithMockUser(username = "admin", password = "1234", roles = { "USER" })
 	void updateRegionTest() throws Exception {
 		Region region1 = new Region("España", "Europa");
 

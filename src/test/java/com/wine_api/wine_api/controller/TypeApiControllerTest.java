@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -28,6 +29,7 @@ class TypeApiControllerTest {
 	private MockMvc mockMvc;
 
 	@Test
+	@WithMockUser(username = "admin", password = "1234", roles = { "USER" })
 	void getAllTypesTest() throws Exception {
 		Type type1 = new Type("Blanco");
 		Type type2 = new Type("Rojo");
@@ -40,6 +42,7 @@ class TypeApiControllerTest {
 	}
 
 	@Test
+	@WithMockUser(username = "admin", password = "1234", roles = { "USER" })
 	void getTypeTest() throws Exception {
 		Type type1 = new Type(1, "Blanco");
 
@@ -51,6 +54,7 @@ class TypeApiControllerTest {
 	}
 
 	@Test
+	@WithMockUser(username = "admin", password = "1234", roles = { "USER" })
 	void saveTypeTest() throws Exception {
 		Type type1 = new Type(1, "Blanco");
 
@@ -68,6 +72,7 @@ class TypeApiControllerTest {
 	}
 
 	@Test
+	@WithMockUser(username = "admin", password = "1234", roles = { "USER" })
 	void updateTypeTest() throws Exception {
 		Type type1 = new Type(1, "Blanco");
 
