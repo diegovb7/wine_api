@@ -1,7 +1,5 @@
 package com.wine_api.wine_api.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
@@ -33,9 +31,6 @@ class WineApiControllerTest {
 
     @Test
     void getAllWinesTest() throws Exception{
-
-        //Wine(String name, String year, Float rating, Integer num_reviews, Float price, String body,
-        //String acidity, Winery winery, Type type, Region region)
 
         Wine wine1 = new Wine("Wine1", "2000", Float.valueOf(4.5f),
             Integer.valueOf(4), Float.valueOf(4.5f), "NA", "NA", new Winery("Winery1"), new Type("Duro"), new Region("España", "Europa"));
@@ -81,7 +76,7 @@ class WineApiControllerTest {
     @Test
     @WithMockUser(username = "admin", password = "1234", roles = { "USER" })
 	void updateWineTest() throws Exception {
-    	Wine wine1 = new Wine("Wine1", "2000", Float.valueOf(4.5f),
+    	Wine wine1 = new Wine(1, "Wine1", "2000", Float.valueOf(4.5f),
 			Integer.valueOf(4), Float.valueOf(4.5f), "NA", "NA", new Winery("Winery1"), new Type("Duro"), new Region("España", "Europa"));
 
 		Mockito.when(wineService.updateWine(Mockito.any(Wine.class))).thenReturn(wine1);
@@ -95,5 +90,18 @@ class WineApiControllerTest {
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(MockMvcResultMatchers.jsonPath("@.name").value("Wine1"));
 	}	
+    
+    @Test
+	@WithMockUser(username = "admin", password = "5678", roles = { "ADMIN" })
+	void deleteWineTest() throws Exception {
+    	Wine wine1 = new Wine(1, "Wine1", "2000", Float.valueOf(4.5f),
+    			Integer.valueOf(4), Float.valueOf(4.5f), "NA", "NA", new Winery("Winery1"), new Type("Duro"), new Region("España", "Europa"));
+		
+		mockMvc.perform(MockMvcRequestBuilders.delete("/api/wine/1"))
+		.andExpect(MockMvcResultMatchers.status().isOk());
+		
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/wine/1"))
+		.andExpect(MockMvcResultMatchers.status().is4xxClientError());
+	}
 }
 

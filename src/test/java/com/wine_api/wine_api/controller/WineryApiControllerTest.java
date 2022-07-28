@@ -1,8 +1,5 @@
 package com.wine_api.wine_api.controller;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
@@ -80,6 +77,18 @@ class WineryApiControllerTest {
 		mockMvc.perform(MockMvcRequestBuilders.put("/api/winery/").content(json).contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("@.name").value("Winery1"));
+	}
+
+	@Test
+	@WithMockUser(username = "admin", password = "5678", roles = { "ADMIN" })
+	void deleteWineryTest() throws Exception {
+		Winery winery1 = new Winery(100, "Winery1");
+		
+		mockMvc.perform(MockMvcRequestBuilders.delete("/api/winery/100"))
+		.andExpect(MockMvcResultMatchers.status().isOk());
+		
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/winery/100"))
+		.andExpect(MockMvcResultMatchers.status().is4xxClientError());
 	}
 
 }

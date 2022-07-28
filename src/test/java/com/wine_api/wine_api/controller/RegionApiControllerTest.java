@@ -1,7 +1,5 @@
 package com.wine_api.wine_api.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
@@ -80,6 +78,18 @@ class RegionApiControllerTest {
 		mockMvc.perform(MockMvcRequestBuilders.put("/api/region/").content(json).contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("@.name").value("España"));
+	}
+	
+	@Test
+	@WithMockUser(username = "admin", password = "5678", roles = { "ADMIN" })
+	void deleteRegionTest() throws Exception {
+		Region region1 = new Region(135, "España", "Europa");
+		
+		mockMvc.perform(MockMvcRequestBuilders.delete("/api/region/135"))
+		.andExpect(MockMvcResultMatchers.status().isOk());
+		
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/region/135"))
+		.andExpect(MockMvcResultMatchers.status().is4xxClientError());
 	}
 
 }

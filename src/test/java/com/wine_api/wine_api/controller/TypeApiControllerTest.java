@@ -1,7 +1,5 @@
 package com.wine_api.wine_api.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
@@ -83,6 +81,18 @@ class TypeApiControllerTest {
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(MockMvcResultMatchers.jsonPath("@.name").value("Blanco"));
+	}
+	
+	@Test
+	@WithMockUser(username = "admin", password = "5678", roles = { "ADMIN" })
+	void deleteTypeTest() throws Exception {
+		Type type1 = new Type(1, "Blanco");
+		
+		mockMvc.perform(MockMvcRequestBuilders.delete("/api/type/1"))
+		.andExpect(MockMvcResultMatchers.status().isOk());
+		
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/type/1"))
+		.andExpect(MockMvcResultMatchers.status().is4xxClientError());
 	}
 
 }
