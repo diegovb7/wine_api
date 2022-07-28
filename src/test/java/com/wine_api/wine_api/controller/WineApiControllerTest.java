@@ -75,8 +75,7 @@ class WineApiControllerTest {
 				.content(json)
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
-				.andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(content().contentType("application/json;"));
+				.andExpect(MockMvcResultMatchers.jsonPath("@.name").value("Wine1"));
 	}
     
     @Test
@@ -94,8 +93,7 @@ class WineApiControllerTest {
 				.content(json)
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
-				.andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(content().contentType("application/json;"));
+				.andExpect(MockMvcResultMatchers.jsonPath("@.name").value("Wine1"));
 	}	
 }
 

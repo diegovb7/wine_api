@@ -29,7 +29,6 @@ class TypeApiControllerTest {
 	private MockMvc mockMvc;
 
 	@Test
-	@WithMockUser(username = "admin", password = "1234", roles = { "USER" })
 	void getAllTypesTest() throws Exception {
 		Type type1 = new Type("Blanco");
 		Type type2 = new Type("Rojo");
@@ -42,7 +41,6 @@ class TypeApiControllerTest {
 	}
 
 	@Test
-	@WithMockUser(username = "admin", password = "1234", roles = { "USER" })
 	void getTypeTest() throws Exception {
 		Type type1 = new Type(1, "Blanco");
 
@@ -67,8 +65,7 @@ class TypeApiControllerTest {
 				.content(json)
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
-				.andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(content().contentType("application/json;"));
+				.andExpect(MockMvcResultMatchers.jsonPath("@.name").value("Blanco"));
 	}
 
 	@Test
@@ -85,8 +82,7 @@ class TypeApiControllerTest {
 				.content(json)
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
-				.andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(content().contentType("application/json;"));
+				.andExpect(MockMvcResultMatchers.jsonPath("@.name").value("Blanco"));
 	}
 
 }
