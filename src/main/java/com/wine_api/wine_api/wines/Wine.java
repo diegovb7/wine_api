@@ -59,11 +59,27 @@ public class Wine implements Serializable{
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "region_id", nullable = false)
-    //@NotNull
+    @NotNull
     private Region region;
 
     public Wine(){
 
+    }
+
+    public Wine(Integer id, String name, String year, Float rating, Integer num_reviews, Float price, String body,
+            String acidity, Winery winery, Type type, Region region) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.year = year;
+        this.rating = rating;
+        this.num_reviews = num_reviews;
+        this.price = price;
+        this.body = body;
+        this.acidity = acidity;
+        this.winery = winery;
+        this.type = type;
+        this.region = region;
     }
 
     
@@ -82,6 +98,15 @@ public class Wine implements Serializable{
         this.region = region;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
 
     public String getName() {
@@ -202,6 +227,8 @@ public class Wine implements Serializable{
         this.region = region;
     }
 
+    
+
 
 
 	@Override
@@ -210,6 +237,9 @@ public class Wine implements Serializable{
 				+ num_reviews + ", price=" + price + ", body=" + body + ", acidity=" + acidity + ", winery=" + winery
 				+ ", type=" + type + ", region=" + region + "]";
 	}
+
+
+
 
     
 }
