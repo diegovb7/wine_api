@@ -39,7 +39,7 @@ class RegionApiControllerTest {
 				.andExpect(MockMvcResultMatchers.jsonPath("@.[1].name").value("Francia"));
 
 	}
-	
+
 	@Test
 	void getRegionTest() throws Exception {
 		Region region1 = new Region("España", "Europa");
@@ -57,34 +57,29 @@ class RegionApiControllerTest {
 		Region region1 = new Region("España", "Europa");
 
 		Mockito.when(regionService.createRegion(Mockito.any(Region.class))).thenReturn(region1);
-		
+
 		ObjectMapper objectMapper = new ObjectMapper();
 		String json = objectMapper.writeValueAsString(region1);
-		
-		mockMvc.perform(MockMvcRequestBuilders.post("/api/region/")
-				.content(json)
-				.contentType(MediaType.APPLICATION_JSON)
-				.accept(MediaType.APPLICATION_JSON))
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/api/region/").content(json)
+				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
 				.andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(content().contentType("application/json;"));
+				.andExpect(MockMvcResultMatchers.jsonPath("@.name").value("España"));
 	}
 
 	@Test
 	@WithMockUser(username = "user", password = "1234", roles = { "USER" })
 	void updateRegionTest() throws Exception {
-		Region region1 = new Region("España", "Europa");
+		Region region1 = new Region(135, "España", "Europa");
 
 		Mockito.when(regionService.updateRegion(Mockito.any(Region.class))).thenReturn(region1);
-		
+
 		ObjectMapper objectMapper = new ObjectMapper();
 		String json = objectMapper.writeValueAsString(region1);
-		
-		mockMvc.perform(MockMvcRequestBuilders.put("/api/region/")
-				.content(json)
-				.contentType(MediaType.APPLICATION_JSON)
-				.accept(MediaType.APPLICATION_JSON))
-				.andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(content().contentType("application/json;"));
+
+		mockMvc.perform(MockMvcRequestBuilders.put("/api/region/").content(json).contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.jsonPath("@.name").value("España"));
 	}
 
 }
