@@ -17,8 +17,7 @@ import org.springframework.security.config.Customizer;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		// http.csrf().disable().authorizeRequests().anyRequest().authenticated().and().httpBasic();
-
+		
 		http.authorizeHttpRequests((authz) -> authz
 				.antMatchers(HttpMethod.GET).permitAll()
 				.antMatchers(HttpMethod.POST, "/**").hasRole("USER")
