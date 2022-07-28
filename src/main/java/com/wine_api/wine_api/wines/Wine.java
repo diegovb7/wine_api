@@ -1,10 +1,13 @@
 package com.wine_api.wine_api.wines;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 import org.hibernate.validator.constraints.Range;
+
+import com.wine_api.wine_api.validation.MaxCurrentYear;
 
 import java.io.Serializable;
 
@@ -20,7 +23,8 @@ public class Wine implements Serializable{
     private String name;
 
     @NotNull
-    @Range(min = 0, max = 2022)
+    @Min(1900)
+    @MaxCurrentYear()
     private String year;
 
     @NotNull
