@@ -1,10 +1,13 @@
 package com.wine_api.wine_api.wines;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 import org.hibernate.validator.constraints.Range;
+
+import com.wine_api.wine_api.validation.MaxCurrentYear;
 
 import java.io.Serializable;
 
@@ -20,7 +23,8 @@ public class Wine implements Serializable{
     private String name;
 
     @NotNull
-    @Range(min = 0, max = 2022) //TODO: FIX CURRENT YEAR
+    @Min(1900)
+    @MaxCurrentYear()
     private String year;
 
     @NotNull
@@ -55,11 +59,27 @@ public class Wine implements Serializable{
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "region_id", nullable = false)
-    //@NotNull
+    @NotNull
     private Region region;
 
     public Wine(){
 
+    }
+
+    public Wine(Integer id, String name, String year, Float rating, Integer num_reviews, Float price, String body,
+            String acidity, Winery winery, Type type, Region region) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.year = year;
+        this.rating = rating;
+        this.num_reviews = num_reviews;
+        this.price = price;
+        this.body = body;
+        this.acidity = acidity;
+        this.winery = winery;
+        this.type = type;
+        this.region = region;
     }
 
     
@@ -78,6 +98,15 @@ public class Wine implements Serializable{
         this.region = region;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
 
     public String getName() {
@@ -198,6 +227,8 @@ public class Wine implements Serializable{
         this.region = region;
     }
 
+    
+
 
 
 	@Override
@@ -206,6 +237,9 @@ public class Wine implements Serializable{
 				+ num_reviews + ", price=" + price + ", body=" + body + ", acidity=" + acidity + ", winery=" + winery
 				+ ", type=" + type + ", region=" + region + "]";
 	}
+
+
+
 
     
 }
