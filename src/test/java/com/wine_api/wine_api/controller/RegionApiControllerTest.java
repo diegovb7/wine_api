@@ -29,7 +29,6 @@ class RegionApiControllerTest {
 	private MockMvc mockMvc;
 
 	@Test
-	@WithMockUser(username = "admin", password = "1234", roles = { "USER" })
 	void getAllRegionsTest() throws Exception {
 		Region region1 = new Region("España", "Europa");
 		Region region2 = new Region("Francia", "Europa");
@@ -42,7 +41,6 @@ class RegionApiControllerTest {
 	}
 	
 	@Test
-	@WithMockUser(username = "admin", password = "1234", roles = { "USER" })
 	void getRegionTest() throws Exception {
 		Region region1 = new Region("España", "Europa");
 
@@ -54,7 +52,7 @@ class RegionApiControllerTest {
 	}
 
 	@Test
-	@WithMockUser(username = "admin", password = "1234", roles = { "USER" })
+	@WithMockUser(username = "user", password = "1234", roles = { "USER" })
 	void saveRegionTest() throws Exception {
 		Region region1 = new Region("España", "Europa");
 
@@ -72,7 +70,7 @@ class RegionApiControllerTest {
 	}
 
 	@Test
-	@WithMockUser(username = "admin", password = "1234", roles = { "USER" })
+	@WithMockUser(username = "user", password = "1234", roles = { "USER" })
 	void updateRegionTest() throws Exception {
 		Region region1 = new Region("España", "Europa");
 

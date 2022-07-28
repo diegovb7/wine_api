@@ -20,7 +20,7 @@ public class Wine implements Serializable{
     private String name;
 
     @NotNull
-    @Range(min = 0, max = 2022)
+    @Range(min = 0, max = 2022) //TODO: FIX CURRENT YEAR
     private String year;
 
     @NotNull

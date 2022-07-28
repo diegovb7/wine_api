@@ -3,6 +3,7 @@ package com.wine_api.wine_api.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.wine_api.wine_api.repository.WineRepository;
@@ -34,27 +35,24 @@ public class WineService {
 		return wineRepository.save(wine);
 	}
 
-	public List<Wine> findWinesByBestRating(Integer numItems) {
+	public List<Wine> findWinesByBestRating(Pageable topLimit) {
 
-		return numItems == null ? wineRepository.findWinesByBestRating()
-				: wineRepository.findWinesByBestRating().subList(0, numItems);
+		return wineRepository.findWinesByBestRating(topLimit);
 	}
 
-	public List<Wine> findWinesByHighestPrice(Integer numItems) {
+	public List<Wine> findWinesByHighestPrice(Pageable topLimit) {
 
-		return numItems == null ? wineRepository.findWinesByHighestPrice()
-				: wineRepository.findWinesByHighestPrice().subList(0, numItems);
+		return wineRepository.findWinesByHighestPrice(topLimit);
 	}
 
-	public List<Wine> findWinesByRatingPrice(Integer numItems) {
-
-		return numItems == null ? wineRepository.findWinesByRatingPrice()
-				: wineRepository.findWinesByRatingPrice().subList(0, numItems);
+	public List<Wine> findWinesByRatingPrice(Pageable topLimit) {
+		
+		return wineRepository.findWinesByRatingPrice(topLimit);
 	}
 
-	public List<String> findBestYears(Integer numItems) {
-
-		return numItems == null ? wineRepository.findBestYears() : wineRepository.findBestYears().subList(0, numItems);
+	public List<String> findBestYears(Pageable topLimit) {
+		
+		return wineRepository.findBestYears(topLimit);
 	}
 
 	public List<Wine> findByYear(String year) {
